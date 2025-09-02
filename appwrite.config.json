@@ -1,0 +1,332 @@
+{
+	"projectId": "68b309c1000e398d458d",
+	"endpoint": "https://syd.cloud.appwrite.io/v1",
+	"projectName": "Site hackathon",
+	"settings": {
+		"services": {
+			"account": true,
+			"avatars": true,
+			"databases": true,
+			"locale": true,
+			"health": true,
+			"storage": true,
+			"teams": true,
+			"users": true,
+			"sites": true,
+			"functions": true,
+			"graphql": true,
+			"messaging": true
+		},
+		"auth": {
+			"methods": {
+				"jwt": true,
+				"phone": false,
+				"invites": false,
+				"anonymous": true,
+				"email-otp": false,
+				"magic-url": false,
+				"email-password": false
+			},
+			"security": {
+				"duration": 31536000,
+				"limit": 0,
+				"sessionsLimit": 10,
+				"passwordHistory": 0,
+				"passwordDictionary": false,
+				"personalDataCheck": false,
+				"sessionAlerts": false,
+				"mockNumbers": []
+			}
+		}
+	},
+	"databases": [
+		{
+			"$id": "memory-capsules-db",
+			"name": "memory-capsules-db",
+			"enabled": true
+		}
+	],
+	"collections": [
+		{
+			"$id": "capsules",
+			"$permissions": ["create(\"any\")", "read(\"any\")", "update(\"any\")", "delete(\"any\")"],
+			"databaseId": "memory-capsules-db",
+			"name": "capsules",
+			"enabled": true,
+			"documentSecurity": false,
+			"attributes": [
+				{
+					"key": "id",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 100,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "title",
+					"type": "string",
+					"required": true,
+					"array": false,
+					"size": 100,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "content",
+					"type": "string",
+					"required": true,
+					"array": false,
+					"size": 500,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "unlockType",
+					"type": "string",
+					"required": true,
+					"array": false,
+					"elements": ["date", "location", "event"],
+					"format": "enum",
+					"default": null
+				},
+				{
+					"key": "unlockDate",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 40,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "isPublic",
+					"type": "boolean",
+					"required": true,
+					"array": false,
+					"default": null
+				},
+				{
+					"key": "mediaFiles",
+					"type": "string",
+					"required": false,
+					"array": true,
+					"size": 200,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "createdBy",
+					"type": "string",
+					"required": true,
+					"array": false,
+					"size": 20,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "isUnlocked",
+					"type": "boolean",
+					"required": false,
+					"array": false,
+					"default": null
+				},
+				{
+					"key": "unlockEvent",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 300,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "eventType",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 60,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "unlockLocation",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 200,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "mediaMetadata",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 2000,
+					"default": null,
+					"encrypt": false
+				}
+			],
+			"indexes": []
+		}
+	],
+	"tables": [
+		{
+			"$id": "capsules",
+			"$permissions": ["create(\"any\")", "read(\"any\")", "update(\"any\")", "delete(\"any\")"],
+			"databaseId": "memory-capsules-db",
+			"name": "capsules",
+			"enabled": true,
+			"columns": [
+				{
+					"key": "id",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 100,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "title",
+					"type": "string",
+					"required": true,
+					"array": false,
+					"size": 100,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "content",
+					"type": "string",
+					"required": true,
+					"array": false,
+					"size": 500,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "unlockType",
+					"type": "string",
+					"required": true,
+					"array": false,
+					"elements": ["date", "location", "event"],
+					"format": "enum",
+					"default": null
+				},
+				{
+					"key": "unlockDate",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 40,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "isPublic",
+					"type": "boolean",
+					"required": true,
+					"array": false,
+					"default": null
+				},
+				{
+					"key": "mediaFiles",
+					"type": "string",
+					"required": false,
+					"array": true,
+					"size": 200,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "createdBy",
+					"type": "string",
+					"required": true,
+					"array": false,
+					"size": 20,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "isUnlocked",
+					"type": "boolean",
+					"required": false,
+					"array": false,
+					"default": null
+				},
+				{
+					"key": "unlockEvent",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 300,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "eventType",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 60,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "unlockLocation",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 200,
+					"default": null,
+					"encrypt": false
+				},
+				{
+					"key": "mediaMetadata",
+					"type": "string",
+					"required": false,
+					"array": false,
+					"size": 2000,
+					"default": null,
+					"encrypt": false
+				}
+			],
+			"indexes": []
+		}
+	],
+	"buckets": [
+		{
+			"$id": "capsule-media",
+			"$permissions": ["create(\"any\")", "read(\"any\")", "update(\"any\")", "delete(\"any\")"],
+			"fileSecurity": false,
+			"name": "capsule-media",
+			"enabled": true,
+			"maximumFileSize": 5000000000,
+			"allowedFileExtensions": [],
+			"compression": "gzip",
+			"encryption": true,
+			"antivirus": true
+		}
+	],
+	"functions": [
+		{
+			"$id": "68b6df8400183f26bf63",
+			"execute": ["any"],
+			"name": "Enhance Content",
+			"enabled": true,
+			"logging": true,
+			"runtime": "node-22",
+			"scopes": ["users.read"],
+			"events": [],
+			"schedule": "",
+			"timeout": 15,
+			"entrypoint": "src/main.js",
+			"commands": "npm install",
+			"specification": "s-2vcpu-4gb",
+			"path": "functions/Enhance Content"
+		}
+	]
+}
