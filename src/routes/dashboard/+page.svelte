@@ -60,11 +60,14 @@
 	// Redirect to home if user is not authenticated (only after auth loading is complete)
 	// Added proper OAuth callback handling to prevent premature redirect
 	$: if (!$isLoading && !hasCheckedAuth) {
-		hasCheckedAuth = true;
-		if ($user === null) {
-			toast.error('Login required to access dashboard');
-			goto('/');
-		}
+		// Add a delay to ensure OAuth session is properly established on hosted sites
+		setTimeout(() => {
+			hasCheckedAuth = true;
+			if ($user === null) {
+				toast.error('Login required to access dashboard');
+				goto('/');
+			}
+		}, 500); // Increased delay for hosted environment OAuth processing
 	}
 </script>
 
