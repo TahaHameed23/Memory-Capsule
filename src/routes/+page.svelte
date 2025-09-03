@@ -22,7 +22,11 @@
 
 	async function handleGitHubLogin() {
 		isAuthenticating = true;
-		await loginWithOAuth(OAuthProvider.Github);
+		const result = await loginWithOAuth(OAuthProvider.Github);
+		// Don't redirect here - OAuth will handle the redirect to /dashboard
+		if (result !== undefined && !result.success) {
+			toast.error('GitHub login failed: ' + result.error);
+		}
 		isAuthenticating = false;
 	}
 

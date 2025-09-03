@@ -30,7 +30,12 @@ export async function loginAnonymously() {
 
 export async function loginWithOAuth(provider: OAuthProvider) {
 	try {
-		await account.createOAuth2Session(provider, window.location.origin, window.location.origin);
+		const session = account.createOAuth2Session({
+			provider: provider,
+			success: `${window.location.origin}/dashboard`,
+			failure: window.location.origin
+		});
+		return { success: true, session };
 	} catch (error) {
 		console.error('OAuth login failed:', error);
 		return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };

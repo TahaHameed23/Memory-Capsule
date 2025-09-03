@@ -20,6 +20,11 @@
 		name="description"
 		content="Create digital time capsules that unlock based on date, location, or special events. Preserve and share memories for the future."
 	/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta
+		name="keywords"
+		content="time capsule, digital memories, memory preservation, future messages, event-based unlocking, location-based unlocking"
+	/>
 </svelte:head>
 
 <Navigation />

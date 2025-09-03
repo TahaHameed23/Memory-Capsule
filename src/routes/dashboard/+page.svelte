@@ -2,7 +2,7 @@
 	import { user, capsules, isLoading } from '$lib/stores.js';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { DATABASE_ID, CAPSULES_TABLE_ID, tablesDB } from '$lib/appwrite.js';
+	import { DATABASE_ID, CAPSULES_TABLE_ID, tablesDB, account } from '$lib/appwrite.js';
 	import { Query } from 'appwrite';
 	import { fade, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
@@ -41,36 +41,6 @@
 		});
 	}
 
-	function formatEventDisplay(unlockEvent: string): { name: string; description: string } {
-		if (!unlockEvent) return { name: 'Unknown Event', description: '' };
-
-		// Check if it's in the format "Name: Description"
-		const colonIndex = unlockEvent.indexOf(': ');
-		if (colonIndex !== -1) {
-			return {
-				name: unlockEvent.substring(0, colonIndex),
-				description: unlockEvent.substring(colonIndex + 2)
-			};
-		}
-
-		// Check if it's in the format "Name - Description"
-		const dashIndex = unlockEvent.indexOf(' - ');
-		if (dashIndex !== -1) {
-			return {
-				name: unlockEvent.substring(0, dashIndex),
-				description: unlockEvent.substring(dashIndex + 3)
-			};
-		}
-
-		// If no separator found, treat the whole thing as name
-		return { name: unlockEvent, description: '' };
-	}
-
-	function truncateText(text: string, maxLength: number): string {
-		if (text.length <= maxLength) return text;
-		return text.substring(0, maxLength) + '...';
-	}
-
 	function getUnlockStatus(capsule: any) {
 		return capsule.isUnlocked ? 'Unlocked' : 'Locked';
 	}
@@ -85,10 +55,16 @@
 		loadCapsules();
 	}
 
+	let hasCheckedAuth = false;
+
 	// Redirect to home if user is not authenticated (only after auth loading is complete)
-	$: if ($user === null && !$isLoading) {
-		toast.error('Login required to access dashboard');
-		goto('/');
+	// Added proper OAuth callback handling to prevent premature redirect
+	$: if (!$isLoading && !hasCheckedAuth) {
+		hasCheckedAuth = true;
+		if ($user === null) {
+			toast.error('Login required to access dashboard');
+			goto('/');
+		}
 	}
 </script>
 

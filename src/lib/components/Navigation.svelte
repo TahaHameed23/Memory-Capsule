@@ -5,7 +5,7 @@
 	import { page } from '$app/stores';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	import file from '$lib/assets/file.svg';
+	import favicon from '$lib/assets/favicon.svg';
 	let isMenuOpen = false;
 
 	async function handleLogout() {
@@ -40,7 +40,7 @@
 				<div class="flex items-center">
 					<a href={$user ? '/dashboard' : '/'} class="flex items-center space-x-2">
 						<div class="flex h-8 w-8 items-center justify-center rounded-full">
-							<img src={file} alt="Logo" class="h-15 w-15 rounded-full" />
+							<img src={favicon} alt="Logo" class="h-15 w-15 rounded-full" />
 						</div>
 						<span class="text-xl font-bold text-white">Memory Capsule</span>
 					</a>
